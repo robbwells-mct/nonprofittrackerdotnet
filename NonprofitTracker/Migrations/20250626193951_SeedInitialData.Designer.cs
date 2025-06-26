@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NonprofitTracker.Data;
 
@@ -10,9 +11,11 @@ using NonprofitTracker.Data;
 namespace NonprofitTracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250626193951_SeedInitialData")]
+    partial class SeedInitialData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
@@ -254,24 +257,24 @@ namespace NonprofitTracker.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5221),
+                            DateCreated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4023),
                             Description = "Our annual fundraising campaign to support all programs",
                             EndDate = new DateTime(2025, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GoalAmount = 100000m,
                             IsActive = true,
-                            LastUpdated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5222),
+                            LastUpdated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4024),
                             Name = "Annual Giving Campaign 2025",
                             StartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5226),
+                            DateCreated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4028),
                             Description = "Capital campaign for new facility construction",
                             EndDate = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GoalAmount = 500000m,
                             IsActive = true,
-                            LastUpdated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5226),
+                            LastUpdated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4029),
                             Name = "Building Fund",
                             StartDate = new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -362,13 +365,13 @@ namespace NonprofitTracker.Migrations
                             Id = 1,
                             AddressLine1 = "123 Oak Street",
                             City = "Springfield",
-                            DateCreated = new DateTime(2024, 10, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5499),
+                            DateCreated = new DateTime(2024, 10, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4256),
                             Email = "emily.johnson@email.com",
                             FirstName = "Emily",
                             Gender = "Female",
                             IsVolunteer = true,
                             LastName = "Johnson",
-                            LastUpdated = new DateTime(2024, 10, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5508),
+                            LastUpdated = new DateTime(2024, 10, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4266),
                             PhoneNumber = "(555) 123-4567",
                             PreferredCommunication = 0,
                             State = "IL",
@@ -379,13 +382,13 @@ namespace NonprofitTracker.Migrations
                             Id = 2,
                             AddressLine1 = "456 Maple Avenue",
                             City = "Springfield",
-                            DateCreated = new DateTime(2024, 8, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5514),
+                            DateCreated = new DateTime(2024, 8, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4272),
                             Email = "michael.chen@email.com",
                             FirstName = "Michael",
                             Gender = "Male",
                             IsVolunteer = false,
                             LastName = "Chen",
-                            LastUpdated = new DateTime(2024, 8, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5515),
+                            LastUpdated = new DateTime(2024, 8, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4273),
                             PhoneNumber = "(555) 234-5678",
                             PreferredCommunication = 1,
                             State = "IL",
@@ -396,13 +399,13 @@ namespace NonprofitTracker.Migrations
                             Id = 3,
                             AddressLine1 = "789 Pine Road",
                             City = "Decatur",
-                            DateCreated = new DateTime(2024, 12, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5721),
+                            DateCreated = new DateTime(2024, 12, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4277),
                             Email = "sarah.williams@email.com",
                             FirstName = "Sarah",
                             Gender = "Female",
                             IsVolunteer = true,
                             LastName = "Williams",
-                            LastUpdated = new DateTime(2024, 12, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5724),
+                            LastUpdated = new DateTime(2024, 12, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4278),
                             PhoneNumber = "(555) 345-6789",
                             PreferredCommunication = 0,
                             State = "IL",
@@ -413,13 +416,13 @@ namespace NonprofitTracker.Migrations
                             Id = 4,
                             AddressLine1 = "321 Elm Street",
                             City = "Peoria",
-                            DateCreated = new DateTime(2024, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5728),
+                            DateCreated = new DateTime(2024, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4283),
                             Email = "david.rodriguez@email.com",
                             FirstName = "David",
                             Gender = "Male",
                             IsVolunteer = false,
                             LastName = "Rodriguez",
-                            LastUpdated = new DateTime(2024, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5730),
+                            LastUpdated = new DateTime(2024, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4284),
                             PhoneNumber = "(555) 456-7890",
                             PreferredCommunication = 2,
                             State = "IL",
@@ -430,13 +433,13 @@ namespace NonprofitTracker.Migrations
                             Id = 5,
                             AddressLine1 = "654 Cedar Lane",
                             City = "Rockford",
-                            DateCreated = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5734),
+                            DateCreated = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4288),
                             Email = "jennifer.davis@email.com",
                             FirstName = "Jennifer",
                             Gender = "Female",
                             IsVolunteer = true,
                             LastName = "Davis",
-                            LastUpdated = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5735),
+                            LastUpdated = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4290),
                             PhoneNumber = "(555) 567-8901",
                             PreferredCommunication = 0,
                             State = "IL",
@@ -447,13 +450,13 @@ namespace NonprofitTracker.Migrations
                             Id = 6,
                             AddressLine1 = "987 Birch Drive",
                             City = "Aurora",
-                            DateCreated = new DateTime(2024, 11, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5739),
+                            DateCreated = new DateTime(2024, 11, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4294),
                             Email = "robert.thompson@email.com",
                             FirstName = "Robert",
                             Gender = "Male",
                             IsVolunteer = false,
                             LastName = "Thompson",
-                            LastUpdated = new DateTime(2024, 11, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5740),
+                            LastUpdated = new DateTime(2024, 11, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4295),
                             PhoneNumber = "(555) 678-9012",
                             PreferredCommunication = 1,
                             State = "IL",
@@ -464,13 +467,13 @@ namespace NonprofitTracker.Migrations
                             Id = 7,
                             AddressLine1 = "147 Walnut Court",
                             City = "Naperville",
-                            DateCreated = new DateTime(2024, 9, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5744),
+                            DateCreated = new DateTime(2024, 9, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4299),
                             Email = "lisa.anderson@email.com",
                             FirstName = "Lisa",
                             Gender = "Female",
                             IsVolunteer = true,
                             LastName = "Anderson",
-                            LastUpdated = new DateTime(2024, 9, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5745),
+                            LastUpdated = new DateTime(2024, 9, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4300),
                             PhoneNumber = "(555) 789-0123",
                             PreferredCommunication = 0,
                             State = "IL",
@@ -481,13 +484,13 @@ namespace NonprofitTracker.Migrations
                             Id = 8,
                             AddressLine1 = "258 Hickory Street",
                             City = "Joliet",
-                            DateCreated = new DateTime(2025, 1, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5749),
+                            DateCreated = new DateTime(2025, 1, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4403),
                             Email = "james.wilson@email.com",
                             FirstName = "James",
                             Gender = "Male",
                             IsVolunteer = false,
                             LastName = "Wilson",
-                            LastUpdated = new DateTime(2025, 1, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5750),
+                            LastUpdated = new DateTime(2025, 1, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4404),
                             PhoneNumber = "(555) 890-1234",
                             PreferredCommunication = 2,
                             State = "IL",
@@ -498,13 +501,13 @@ namespace NonprofitTracker.Migrations
                             Id = 9,
                             AddressLine1 = "369 Sycamore Avenue",
                             City = "Evanston",
-                            DateCreated = new DateTime(2025, 3, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5755),
+                            DateCreated = new DateTime(2025, 3, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4409),
                             Email = "amanda.garcia@email.com",
                             FirstName = "Amanda",
                             Gender = "Female",
                             IsVolunteer = true,
                             LastName = "Garcia",
-                            LastUpdated = new DateTime(2025, 3, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5755),
+                            LastUpdated = new DateTime(2025, 3, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4409),
                             PhoneNumber = "(555) 901-2345",
                             PreferredCommunication = 0,
                             State = "IL",
@@ -515,13 +518,13 @@ namespace NonprofitTracker.Migrations
                             Id = 10,
                             AddressLine1 = "741 Poplar Boulevard",
                             City = "Champaign",
-                            DateCreated = new DateTime(2024, 7, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5760),
+                            DateCreated = new DateTime(2024, 7, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4414),
                             Email = "christopher.martinez@email.com",
                             FirstName = "Christopher",
                             Gender = "Male",
                             IsVolunteer = false,
                             LastName = "Martinez",
-                            LastUpdated = new DateTime(2024, 7, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5761),
+                            LastUpdated = new DateTime(2024, 7, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4415),
                             PhoneNumber = "(555) 012-3456",
                             PreferredCommunication = 1,
                             State = "IL",
@@ -660,14 +663,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 5000m,
                             CampaignId = 1,
                             ConstituentId = 1,
-                            CreatedDate = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5872),
-                            DateCreated = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5872),
-                            DonationDate = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5864),
+                            CreatedDate = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4499),
+                            DateCreated = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4498),
+                            DonationDate = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4492),
                             DonationType = 0,
                             GiftType = 0,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5874),
-                            UpdatedDate = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5874)
+                            LastUpdated = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4500),
+                            UpdatedDate = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4501)
                         },
                         new
                         {
@@ -677,14 +680,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 10000m,
                             CampaignId = 2,
                             ConstituentId = 1,
-                            CreatedDate = new DateTime(2025, 4, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5881),
-                            DateCreated = new DateTime(2025, 4, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5881),
-                            DonationDate = new DateTime(2025, 4, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5879),
+                            CreatedDate = new DateTime(2025, 4, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4508),
+                            DateCreated = new DateTime(2025, 4, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4507),
+                            DonationDate = new DateTime(2025, 4, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4506),
                             DonationType = 0,
                             GiftType = 1,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 4, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5882),
-                            UpdatedDate = new DateTime(2025, 4, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5883)
+                            LastUpdated = new DateTime(2025, 4, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4509),
+                            UpdatedDate = new DateTime(2025, 4, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4509)
                         },
                         new
                         {
@@ -694,14 +697,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 250m,
                             CampaignId = 1,
                             ConstituentId = 2,
-                            CreatedDate = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5889),
-                            DateCreated = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5888),
-                            DonationDate = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5887),
+                            CreatedDate = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4516),
+                            DateCreated = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4515),
+                            DonationDate = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4513),
                             DonationType = 0,
                             GiftType = 2,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5889),
-                            UpdatedDate = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5890)
+                            LastUpdated = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4516),
+                            UpdatedDate = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4517)
                         },
                         new
                         {
@@ -711,14 +714,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 300m,
                             CampaignId = 1,
                             ConstituentId = 2,
-                            CreatedDate = new DateTime(2025, 5, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5896),
-                            DateCreated = new DateTime(2025, 5, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5895),
-                            DonationDate = new DateTime(2025, 5, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5894),
+                            CreatedDate = new DateTime(2025, 5, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4523),
+                            DateCreated = new DateTime(2025, 5, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4523),
+                            DonationDate = new DateTime(2025, 5, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4521),
                             DonationType = 0,
                             GiftType = 2,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 5, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5897),
-                            UpdatedDate = new DateTime(2025, 5, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5897)
+                            LastUpdated = new DateTime(2025, 5, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4524),
+                            UpdatedDate = new DateTime(2025, 5, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4524)
                         },
                         new
                         {
@@ -728,14 +731,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 100m,
                             CampaignId = 1,
                             ConstituentId = 3,
-                            CreatedDate = new DateTime(2025, 1, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5907),
-                            DateCreated = new DateTime(2025, 1, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5902),
-                            DonationDate = new DateTime(2025, 1, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5901),
+                            CreatedDate = new DateTime(2025, 1, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4531),
+                            DateCreated = new DateTime(2025, 1, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4530),
+                            DonationDate = new DateTime(2025, 1, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4529),
                             DonationType = 1,
                             GiftType = 2,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 1, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5907),
-                            UpdatedDate = new DateTime(2025, 1, 27, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5908)
+                            LastUpdated = new DateTime(2025, 1, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4531),
+                            UpdatedDate = new DateTime(2025, 1, 27, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4532)
                         },
                         new
                         {
@@ -745,14 +748,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 100m,
                             CampaignId = 1,
                             ConstituentId = 3,
-                            CreatedDate = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5913),
-                            DateCreated = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5913),
-                            DonationDate = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5912),
+                            CreatedDate = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4538),
+                            DateCreated = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4537),
+                            DonationDate = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4536),
                             DonationType = 1,
                             GiftType = 2,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5914),
-                            UpdatedDate = new DateTime(2025, 2, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5915)
+                            LastUpdated = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4539),
+                            UpdatedDate = new DateTime(2025, 2, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4539)
                         },
                         new
                         {
@@ -762,14 +765,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 100m,
                             CampaignId = 1,
                             ConstituentId = 3,
-                            CreatedDate = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5920),
-                            DateCreated = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5920),
-                            DonationDate = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5918),
+                            CreatedDate = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4545),
+                            DateCreated = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4545),
+                            DonationDate = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4543),
                             DonationType = 1,
                             GiftType = 2,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5921),
-                            UpdatedDate = new DateTime(2025, 3, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5922)
+                            LastUpdated = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4546),
+                            UpdatedDate = new DateTime(2025, 3, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4547)
                         },
                         new
                         {
@@ -779,14 +782,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 7500m,
                             CampaignId = 2,
                             ConstituentId = 4,
-                            CreatedDate = new DateTime(2024, 12, 8, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5928),
-                            DateCreated = new DateTime(2024, 12, 8, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5927),
-                            DonationDate = new DateTime(2024, 12, 8, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5926),
+                            CreatedDate = new DateTime(2024, 12, 8, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4553),
+                            DateCreated = new DateTime(2024, 12, 8, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4552),
+                            DonationDate = new DateTime(2024, 12, 8, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4551),
                             DonationType = 0,
                             GiftType = 1,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2024, 12, 8, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5928),
-                            UpdatedDate = new DateTime(2024, 12, 8, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5929)
+                            LastUpdated = new DateTime(2024, 12, 8, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4553),
+                            UpdatedDate = new DateTime(2024, 12, 8, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4554)
                         },
                         new
                         {
@@ -796,14 +799,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 500m,
                             CampaignId = 1,
                             ConstituentId = 5,
-                            CreatedDate = new DateTime(2025, 4, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5935),
-                            DateCreated = new DateTime(2025, 4, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5934),
-                            DonationDate = new DateTime(2025, 4, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5933),
+                            CreatedDate = new DateTime(2025, 4, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4560),
+                            DateCreated = new DateTime(2025, 4, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4559),
+                            DonationDate = new DateTime(2025, 4, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4558),
                             DonationType = 0,
                             GiftType = 0,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 4, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5935),
-                            UpdatedDate = new DateTime(2025, 4, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5936)
+                            LastUpdated = new DateTime(2025, 4, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4561),
+                            UpdatedDate = new DateTime(2025, 4, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4561)
                         },
                         new
                         {
@@ -813,14 +816,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 750m,
                             CampaignId = 2,
                             ConstituentId = 5,
-                            CreatedDate = new DateTime(2025, 5, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5942),
-                            DateCreated = new DateTime(2025, 5, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5942),
-                            DonationDate = new DateTime(2025, 5, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5941),
+                            CreatedDate = new DateTime(2025, 5, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4567),
+                            DateCreated = new DateTime(2025, 5, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4567),
+                            DonationDate = new DateTime(2025, 5, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4565),
                             DonationType = 0,
                             GiftType = 1,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 5, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5943),
-                            UpdatedDate = new DateTime(2025, 5, 12, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5944)
+                            LastUpdated = new DateTime(2025, 5, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4568),
+                            UpdatedDate = new DateTime(2025, 5, 12, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4569)
                         },
                         new
                         {
@@ -830,14 +833,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 1000m,
                             CampaignId = 1,
                             ConstituentId = 6,
-                            CreatedDate = new DateTime(2024, 12, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5950),
-                            DateCreated = new DateTime(2024, 12, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5949),
-                            DonationDate = new DateTime(2024, 12, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5948),
+                            CreatedDate = new DateTime(2024, 12, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4575),
+                            DateCreated = new DateTime(2024, 12, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4574),
+                            DonationDate = new DateTime(2024, 12, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4573),
                             DonationType = 0,
                             GiftType = 3,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2024, 12, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5950),
-                            UpdatedDate = new DateTime(2024, 12, 28, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5951)
+                            LastUpdated = new DateTime(2024, 12, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4575),
+                            UpdatedDate = new DateTime(2024, 12, 28, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4576)
                         },
                         new
                         {
@@ -847,14 +850,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 200m,
                             CampaignId = 1,
                             ConstituentId = 7,
-                            CreatedDate = new DateTime(2025, 3, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5957),
-                            DateCreated = new DateTime(2025, 3, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5956),
-                            DonationDate = new DateTime(2025, 3, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5955),
+                            CreatedDate = new DateTime(2025, 3, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4582),
+                            DateCreated = new DateTime(2025, 3, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4581),
+                            DonationDate = new DateTime(2025, 3, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4580),
                             DonationType = 0,
                             GiftType = 2,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 3, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5958),
-                            UpdatedDate = new DateTime(2025, 3, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5958)
+                            LastUpdated = new DateTime(2025, 3, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4582),
+                            UpdatedDate = new DateTime(2025, 3, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4583)
                         },
                         new
                         {
@@ -864,14 +867,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 350m,
                             CampaignId = 1,
                             ConstituentId = 7,
-                            CreatedDate = new DateTime(2025, 5, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5966),
-                            DateCreated = new DateTime(2025, 5, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5965),
-                            DonationDate = new DateTime(2025, 5, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5962),
+                            CreatedDate = new DateTime(2025, 5, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4589),
+                            DateCreated = new DateTime(2025, 5, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4588),
+                            DonationDate = new DateTime(2025, 5, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4587),
                             DonationType = 0,
                             GiftType = 2,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 5, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5966),
-                            UpdatedDate = new DateTime(2025, 5, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5967)
+                            LastUpdated = new DateTime(2025, 5, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4590),
+                            UpdatedDate = new DateTime(2025, 5, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4590)
                         },
                         new
                         {
@@ -881,14 +884,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 2000m,
                             CampaignId = 1,
                             ConstituentId = 8,
-                            CreatedDate = new DateTime(2024, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5973),
-                            DateCreated = new DateTime(2024, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5972),
-                            DonationDate = new DateTime(2024, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5971),
+                            CreatedDate = new DateTime(2024, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4596),
+                            DateCreated = new DateTime(2024, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4596),
+                            DonationDate = new DateTime(2024, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4594),
                             DonationType = 0,
                             GiftType = 1,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2024, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5973),
-                            UpdatedDate = new DateTime(2024, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5974)
+                            LastUpdated = new DateTime(2024, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4597),
+                            UpdatedDate = new DateTime(2024, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4598)
                         },
                         new
                         {
@@ -898,14 +901,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 2500m,
                             CampaignId = 1,
                             ConstituentId = 8,
-                            CreatedDate = new DateTime(2025, 6, 1, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5980),
-                            DateCreated = new DateTime(2025, 6, 1, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5979),
-                            DonationDate = new DateTime(2025, 6, 1, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5978),
+                            CreatedDate = new DateTime(2025, 6, 1, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4604),
+                            DateCreated = new DateTime(2025, 6, 1, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4603),
+                            DonationDate = new DateTime(2025, 6, 1, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4602),
                             DonationType = 0,
                             GiftType = 1,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 6, 1, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5980),
-                            UpdatedDate = new DateTime(2025, 6, 1, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5981)
+                            LastUpdated = new DateTime(2025, 6, 1, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4605),
+                            UpdatedDate = new DateTime(2025, 6, 1, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4605)
                         },
                         new
                         {
@@ -915,14 +918,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 150m,
                             CampaignId = 1,
                             ConstituentId = 9,
-                            CreatedDate = new DateTime(2025, 4, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5987),
-                            DateCreated = new DateTime(2025, 4, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5986),
-                            DonationDate = new DateTime(2025, 4, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5985),
+                            CreatedDate = new DateTime(2025, 4, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4611),
+                            DateCreated = new DateTime(2025, 4, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4611),
+                            DonationDate = new DateTime(2025, 4, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4610),
                             DonationType = 0,
                             GiftType = 2,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 4, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5987),
-                            UpdatedDate = new DateTime(2025, 4, 7, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5988)
+                            LastUpdated = new DateTime(2025, 4, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4612),
+                            UpdatedDate = new DateTime(2025, 4, 7, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4613)
                         },
                         new
                         {
@@ -932,14 +935,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 200m,
                             CampaignId = 1,
                             ConstituentId = 9,
-                            CreatedDate = new DateTime(2025, 6, 11, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5994),
-                            DateCreated = new DateTime(2025, 6, 11, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5993),
-                            DonationDate = new DateTime(2025, 6, 11, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5992),
+                            CreatedDate = new DateTime(2025, 6, 11, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4619),
+                            DateCreated = new DateTime(2025, 6, 11, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4618),
+                            DonationDate = new DateTime(2025, 6, 11, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4617),
                             DonationType = 0,
                             GiftType = 2,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2025, 6, 11, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5994),
-                            UpdatedDate = new DateTime(2025, 6, 11, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5995)
+                            LastUpdated = new DateTime(2025, 6, 11, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4619),
+                            UpdatedDate = new DateTime(2025, 6, 11, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4620)
                         },
                         new
                         {
@@ -949,14 +952,14 @@ namespace NonprofitTracker.Migrations
                             Amount = 3000m,
                             CampaignId = 2,
                             ConstituentId = 10,
-                            CreatedDate = new DateTime(2024, 11, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(6001),
-                            DateCreated = new DateTime(2024, 11, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(6000),
-                            DonationDate = new DateTime(2024, 11, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5999),
+                            CreatedDate = new DateTime(2024, 11, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4626),
+                            DateCreated = new DateTime(2024, 11, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4625),
+                            DonationDate = new DateTime(2024, 11, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4624),
                             DonationType = 0,
                             GiftType = 1,
                             IsRecurring = false,
-                            LastUpdated = new DateTime(2024, 11, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(6001),
-                            UpdatedDate = new DateTime(2024, 11, 18, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(6002)
+                            LastUpdated = new DateTime(2024, 11, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4627),
+                            UpdatedDate = new DateTime(2024, 11, 18, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4627)
                         });
                 });
 
@@ -992,28 +995,28 @@ namespace NonprofitTracker.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5441),
+                            DateCreated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4205),
                             Description = "After-school program for at-risk youth",
                             IsActive = true,
-                            LastUpdated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5442),
+                            LastUpdated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4206),
                             Name = "Youth Development Program"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5445),
+                            DateCreated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4209),
                             Description = "Support services for elderly community members",
                             IsActive = true,
-                            LastUpdated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5446),
+                            LastUpdated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4210),
                             Name = "Senior Services"
                         },
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5448),
+                            DateCreated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4212),
                             Description = "Food bank and meal distribution services",
                             IsActive = true,
-                            LastUpdated = new DateTime(2025, 6, 26, 19, 59, 39, 598, DateTimeKind.Utc).AddTicks(5449),
+                            LastUpdated = new DateTime(2025, 6, 26, 19, 39, 50, 195, DateTimeKind.Utc).AddTicks(4213),
                             Name = "Food Assistance Program"
                         });
                 });

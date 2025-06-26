@@ -1,0 +1,232 @@
+@model NonprofitTracker.Models.Constituent
+@{
+    ViewData["Title"] = "Constituent Details";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <h1>
+            <i class="bi bi-person me-2"></i>@Model.FirstName @Model.LastName
+        </h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Basic Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">First Name:</dt>
+                            <dd class="col-sm-8">@Model.FirstName</dd>
+                            
+                            <dt class="col-sm-4">Last Name:</dt>
+                            <dd class="col-sm-8">@Model.LastName</dd>
+                            
+                            <dt class="col-sm-4">Email:</dt>
+                            <dd class="col-sm-8">
+                                @if (!string.IsNullOrEmpty(Model.Email))
+                                {
+                                    <a href="mailto:@Model.Email">@Model.Email</a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Not provided</span>
+                                }
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Phone:</dt>
+                            <dd class="col-sm-8">
+                                @if (!string.IsNullOrEmpty(Model.PhoneNumber))
+                                {
+                                    <a href="tel:@Model.PhoneNumber">@Model.PhoneNumber</a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Not provided</span>
+                                }
+                            </dd>
+                            
+                            <dt class="col-sm-4">Volunteer:</dt>
+                            <dd class="col-sm-8">
+                                @if (Model.IsVolunteer)
+                                {
+                                    <span class="badge bg-success">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">No</span>
+                                }
+                            </dd>
+                            
+                            <dt class="col-sm-4">Communication:</dt>
+                            <dd class="col-sm-8">@Model.PreferredCommunication</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">Address Information</h5>
+            </div>
+            <div class="card-body">
+                @if (!string.IsNullOrEmpty(Model.AddressLine1) || !string.IsNullOrEmpty(Model.City))
+                {
+                    <address>
+                        @if (!string.IsNullOrEmpty(Model.AddressLine1))
+                        {
+                            @Model.AddressLine1<br />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.AddressLine2))
+                        {
+                            @Model.AddressLine2<br />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.City) || !string.IsNullOrEmpty(Model.State) || !string.IsNullOrEmpty(Model.ZipCode))
+                        {
+                            @Model.City@(!string.IsNullOrEmpty(Model.City) && (!string.IsNullOrEmpty(Model.State) || !string.IsNullOrEmpty(Model.ZipCode)) ? ", " : "")@Model.State @Model.ZipCode<br />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Country))
+                        {
+                            @Model.Country
+                        }
+                    </address>
+                }
+                else
+                {
+                    <p class="text-muted">No address information provided</p>
+                }
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">Additional Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Date of Birth:</dt>
+                            <dd class="col-sm-8">
+                                @if (Model.DateOfBirth.HasValue)
+                                {
+                                    @Model.DateOfBirth.Value.ToString("MMMM d, yyyy")
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Not provided</span>
+                                }
+                            </dd>
+                            
+                            <dt class="col-sm-4">Gender:</dt>
+                            <dd class="col-sm-8">
+                                @if (!string.IsNullOrEmpty(Model.Gender))
+                                {
+                                    @Model.Gender
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Not specified</span>
+                                }
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Created:</dt>
+                            <dd class="col-sm-8">@Model.DateCreated.ToString("MMMM d, yyyy")</dd>
+                            
+                            <dt class="col-sm-4">Last Updated:</dt>
+                            <dd class="col-sm-8">@Model.LastUpdated.ToString("MMMM d, yyyy")</dd>
+                        </dl>
+                    </div>
+                </div>
+                
+                @if (!string.IsNullOrEmpty(Model.Notes))
+                {
+                    <div class="mt-3">
+                        <strong>Notes:</strong>
+                        <p class="mt-2">@Model.Notes</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                <i class="bi bi-pencil me-1"></i>Edit
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Back to List
+            </a>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">Recent Donations</h6>
+            </div>
+            <div class="card-body">
+                @if (Model.Donations != null && Model.Donations.Any())
+                {
+                    @foreach (var donation in Model.Donations.OrderByDescending(d => d.DonationDate).Take(5))
+                    {
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div>
+                                <small class="text-muted">@donation.DonationDate.ToString("MMM d, yyyy")</small>
+                            </div>
+                            <div>
+                                <strong>@donation.Amount.ToString("C")</strong>
+                            </div>
+                        </div>
+                    }
+                    <hr />
+                    <a asp-controller="Donations" asp-action="Index" asp-route-constituentId="@Model.Id" class="btn btn-sm btn-outline-primary">
+                        View All Donations
+                    </a>
+                }
+                else
+                {
+                    <p class="text-muted">No donations recorded</p>
+                    <a asp-controller="Donations" asp-action="Create" asp-route-constituentId="@Model.Id" class="btn btn-sm btn-primary">
+                        Add Donation
+                    </a>
+                }
+            </div>
+        </div>
+        
+        @if (Model.ServiceRequests != null && Model.ServiceRequests.Any())
+        {
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h6 class="mb-0">Service Requests</h6>
+                </div>
+                <div class="card-body">
+                    @foreach (var request in Model.ServiceRequests.OrderByDescending(sr => sr.DateRequested).Take(3))
+                    {
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">@request.DateRequested.ToString("MMM d, yyyy")</small>
+                                <span class="badge bg-@(request.Status == NonprofitTracker.Models.RequestStatus.Completed ? "success" : 
+                                    request.Status == NonprofitTracker.Models.RequestStatus.InProgress ? "warning" : "secondary")">
+                                    @request.Status
+                                </span>
+                            </div>
+                            <div><strong>@request.RequestType</strong></div>
+                        </div>
+                    }
+                    <hr />
+                    <a asp-controller="ServiceRequests" asp-action="Index" asp-route-constituentId="@Model.Id" class="btn btn-sm btn-outline-primary">
+                        View All Requests
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

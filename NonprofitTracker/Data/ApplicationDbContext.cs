@@ -328,9 +328,13 @@ namespace NonprofitTracker.Data
                     Amount = 5000m,
                     DonationDate = DateTime.UtcNow.AddDays(-120),
                     GiftType = GiftType.Cash,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-120),
-                    LastUpdated = DateTime.UtcNow.AddDays(-120)
+                    CreatedDate = DateTime.UtcNow.AddDays(-120),
+                    LastUpdated = DateTime.UtcNow.AddDays(-120),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-120)
                 },
                 new Donation
                 {
@@ -340,9 +344,13 @@ namespace NonprofitTracker.Data
                     Amount = 10000m,
                     DonationDate = DateTime.UtcNow.AddDays(-60),
                     GiftType = GiftType.Check,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-60),
-                    LastUpdated = DateTime.UtcNow.AddDays(-60)
+                    CreatedDate = DateTime.UtcNow.AddDays(-60),
+                    LastUpdated = DateTime.UtcNow.AddDays(-60),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-60)
                 },
                 // Michael Chen - Regular Donor
                 new Donation
@@ -353,9 +361,13 @@ namespace NonprofitTracker.Data
                     Amount = 250m,
                     DonationDate = DateTime.UtcNow.AddDays(-90),
                     GiftType = GiftType.CreditCard,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-90),
-                    LastUpdated = DateTime.UtcNow.AddDays(-90)
+                    CreatedDate = DateTime.UtcNow.AddDays(-90),
+                    LastUpdated = DateTime.UtcNow.AddDays(-90),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-90)
                 },
                 new Donation
                 {
@@ -365,9 +377,13 @@ namespace NonprofitTracker.Data
                     Amount = 300m,
                     DonationDate = DateTime.UtcNow.AddDays(-30),
                     GiftType = GiftType.CreditCard,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-30),
-                    LastUpdated = DateTime.UtcNow.AddDays(-30)
+                    CreatedDate = DateTime.UtcNow.AddDays(-30),
+                    LastUpdated = DateTime.UtcNow.AddDays(-30),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-30)
                 },
                 // Sarah Williams - Monthly Donor
                 new Donation
@@ -378,9 +394,13 @@ namespace NonprofitTracker.Data
                     Amount = 100m,
                     DonationDate = DateTime.UtcNow.AddDays(-150),
                     GiftType = GiftType.CreditCard,
+                    DonationType = DonationType.Recurring,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-150),
-                    LastUpdated = DateTime.UtcNow.AddDays(-150)
+                    CreatedDate = DateTime.UtcNow.AddDays(-150),
+                    LastUpdated = DateTime.UtcNow.AddDays(-150),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-150)
                 },
                 new Donation
                 {
@@ -390,9 +410,13 @@ namespace NonprofitTracker.Data
                     Amount = 100m,
                     DonationDate = DateTime.UtcNow.AddDays(-120),
                     GiftType = GiftType.CreditCard,
+                    DonationType = DonationType.Recurring,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-120),
-                    LastUpdated = DateTime.UtcNow.AddDays(-120)
+                    CreatedDate = DateTime.UtcNow.AddDays(-120),
+                    LastUpdated = DateTime.UtcNow.AddDays(-120),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-120)
                 },
                 new Donation
                 {
@@ -402,9 +426,13 @@ namespace NonprofitTracker.Data
                     Amount = 100m,
                     DonationDate = DateTime.UtcNow.AddDays(-90),
                     GiftType = GiftType.CreditCard,
+                    DonationType = DonationType.Recurring,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-90),
-                    LastUpdated = DateTime.UtcNow.AddDays(-90)
+                    CreatedDate = DateTime.UtcNow.AddDays(-90),
+                    LastUpdated = DateTime.UtcNow.AddDays(-90),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-90)
                 },
                 // David Rodriguez - Large Single Donation
                 new Donation
@@ -415,9 +443,13 @@ namespace NonprofitTracker.Data
                     Amount = 7500m,
                     DonationDate = DateTime.UtcNow.AddDays(-200),
                     GiftType = GiftType.Check,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-200),
-                    LastUpdated = DateTime.UtcNow.AddDays(-200)
+                    CreatedDate = DateTime.UtcNow.AddDays(-200),
+                    LastUpdated = DateTime.UtcNow.AddDays(-200),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-200)
                 },
                 // Jennifer Davis - Regular Supporter
                 new Donation
@@ -428,9 +460,13 @@ namespace NonprofitTracker.Data
                     Amount = 500m,
                     DonationDate = DateTime.UtcNow.AddDays(-75),
                     GiftType = GiftType.Cash,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-75),
-                    LastUpdated = DateTime.UtcNow.AddDays(-75)
+                    CreatedDate = DateTime.UtcNow.AddDays(-75),
+                    LastUpdated = DateTime.UtcNow.AddDays(-75),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-75)
                 },
                 new Donation
                 {
@@ -440,9 +476,13 @@ namespace NonprofitTracker.Data
                     Amount = 750m,
                     DonationDate = DateTime.UtcNow.AddDays(-45),
                     GiftType = GiftType.Check,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-45),
-                    LastUpdated = DateTime.UtcNow.AddDays(-45)
+                    CreatedDate = DateTime.UtcNow.AddDays(-45),
+                    LastUpdated = DateTime.UtcNow.AddDays(-45),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-45)
                 },
                 // Robert Thompson - Corporate Matching
                 new Donation
@@ -453,9 +493,13 @@ namespace NonprofitTracker.Data
                     Amount = 1000m,
                     DonationDate = DateTime.UtcNow.AddDays(-180),
                     GiftType = GiftType.Stock,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-180),
-                    LastUpdated = DateTime.UtcNow.AddDays(-180)
+                    CreatedDate = DateTime.UtcNow.AddDays(-180),
+                    LastUpdated = DateTime.UtcNow.AddDays(-180),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-180)
                 },
                 // Lisa Anderson - Event Donations
                 new Donation
@@ -466,9 +510,13 @@ namespace NonprofitTracker.Data
                     Amount = 200m,
                     DonationDate = DateTime.UtcNow.AddDays(-100),
                     GiftType = GiftType.CreditCard,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-100),
-                    LastUpdated = DateTime.UtcNow.AddDays(-100)
+                    CreatedDate = DateTime.UtcNow.AddDays(-100),
+                    LastUpdated = DateTime.UtcNow.AddDays(-100),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-100)
                 },
                 new Donation
                 {
@@ -478,9 +526,13 @@ namespace NonprofitTracker.Data
                     Amount = 350m,
                     DonationDate = DateTime.UtcNow.AddDays(-50),
                     GiftType = GiftType.CreditCard,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Pending,
                     AcknowledgmentSent = false,
                     DateCreated = DateTime.UtcNow.AddDays(-50),
-                    LastUpdated = DateTime.UtcNow.AddDays(-50)
+                    CreatedDate = DateTime.UtcNow.AddDays(-50),
+                    LastUpdated = DateTime.UtcNow.AddDays(-50),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-50)
                 },
                 // James Wilson - Annual Donor
                 new Donation
@@ -491,9 +543,13 @@ namespace NonprofitTracker.Data
                     Amount = 2000m,
                     DonationDate = DateTime.UtcNow.AddDays(-365),
                     GiftType = GiftType.Check,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-365),
-                    LastUpdated = DateTime.UtcNow.AddDays(-365)
+                    CreatedDate = DateTime.UtcNow.AddDays(-365),
+                    LastUpdated = DateTime.UtcNow.AddDays(-365),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-365)
                 },
                 new Donation
                 {
@@ -503,9 +559,13 @@ namespace NonprofitTracker.Data
                     Amount = 2500m,
                     DonationDate = DateTime.UtcNow.AddDays(-25),
                     GiftType = GiftType.Check,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-25),
-                    LastUpdated = DateTime.UtcNow.AddDays(-25)
+                    CreatedDate = DateTime.UtcNow.AddDays(-25),
+                    LastUpdated = DateTime.UtcNow.AddDays(-25),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-25)
                 },
                 // Amanda Garcia - Young Professional
                 new Donation
@@ -516,9 +576,13 @@ namespace NonprofitTracker.Data
                     Amount = 150m,
                     DonationDate = DateTime.UtcNow.AddDays(-80),
                     GiftType = GiftType.CreditCard,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-80),
-                    LastUpdated = DateTime.UtcNow.AddDays(-80)
+                    CreatedDate = DateTime.UtcNow.AddDays(-80),
+                    LastUpdated = DateTime.UtcNow.AddDays(-80),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-80)
                 },
                 new Donation
                 {
@@ -528,9 +592,13 @@ namespace NonprofitTracker.Data
                     Amount = 200m,
                     DonationDate = DateTime.UtcNow.AddDays(-15),
                     GiftType = GiftType.CreditCard,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Pending,
                     AcknowledgmentSent = false,
                     DateCreated = DateTime.UtcNow.AddDays(-15),
-                    LastUpdated = DateTime.UtcNow.AddDays(-15)
+                    CreatedDate = DateTime.UtcNow.AddDays(-15),
+                    LastUpdated = DateTime.UtcNow.AddDays(-15),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-15)
                 },
                 // Christopher Martinez - Memorial Donation
                 new Donation
@@ -541,9 +609,13 @@ namespace NonprofitTracker.Data
                     Amount = 3000m,
                     DonationDate = DateTime.UtcNow.AddDays(-220),
                     GiftType = GiftType.Check,
+                    DonationType = DonationType.OneTime,
+                    AcknowledgmentStatus = AcknowledgmentStatus.Sent,
                     AcknowledgmentSent = true,
                     DateCreated = DateTime.UtcNow.AddDays(-220),
-                    LastUpdated = DateTime.UtcNow.AddDays(-220)
+                    CreatedDate = DateTime.UtcNow.AddDays(-220),
+                    LastUpdated = DateTime.UtcNow.AddDays(-220),
+                    UpdatedDate = DateTime.UtcNow.AddDays(-220)
                 }
             );
         }
