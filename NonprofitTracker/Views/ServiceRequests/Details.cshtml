@@ -1,0 +1,242 @@
+@model NonprofitTracker.Models.ServiceRequest
+@using NonprofitTracker.Models
+
+@{
+    ViewData["Title"] = "Service Request Details";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">
+        <i class="bi bi-eye text-primary me-2"></i>Service Request Details
+    </h1>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-primary me-2">
+            <i class="bi bi-pencil me-1"></i>Edit
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-1"></i>Back to List
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">@Model?.Title</h5>
+                <div>
+                    @switch (Model?.Priority)
+                    {
+                        case Priority.Urgent:
+                            <span class="badge bg-danger fs-6">@Model.Priority</span>
+                            break;
+                        case Priority.High:
+                            <span class="badge bg-warning fs-6">@Model.Priority</span>
+                            break;
+                        case Priority.Medium:
+                            <span class="badge bg-info fs-6">@Model.Priority</span>
+                            break;
+                        case Priority.Low:
+                            <span class="badge bg-light text-dark fs-6">@Model.Priority</span>
+                            break;
+                    }
+                    @switch (Model?.Status)
+                    {
+                        case RequestStatus.Pending:
+                            <span class="badge bg-warning fs-6 ms-2">@Model.Status</span>
+                            break;
+                        case RequestStatus.InProgress:
+                            <span class="badge bg-info fs-6 ms-2">@Model.Status</span>
+                            break;
+                        case RequestStatus.Completed:
+                            <span class="badge bg-success fs-6 ms-2">@Model.Status</span>
+                            break;
+                        case RequestStatus.Cancelled:
+                            <span class="badge bg-secondary fs-6 ms-2">@Model.Status</span>
+                            break;
+                    }
+                </div>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Description:</dt>
+                    <dd class="col-sm-9">@Model?.Description</dd>
+
+                    <dt class="col-sm-3">Constituent:</dt>
+                    <dd class="col-sm-9">
+                        @if (Model?.Constituent != null)
+                        {
+                            <a asp-controller="Constituents" asp-action="Details" asp-route-id="@Model.ConstituentId">
+                                @Model.Constituent.FirstName @Model.Constituent.LastName
+                            </a>
+                            <br>
+                            <small class="text-muted">@Model.Constituent.Email</small>
+                        }
+                        else
+                        {
+                            <span class="text-muted">No constituent assigned</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">Request Type:</dt>
+                    <dd class="col-sm-9">
+                        <span class="badge bg-secondary">@Model?.RequestType</span>
+                    </dd>
+
+                    <dt class="col-sm-3">Assigned Staff:</dt>
+                    <dd class="col-sm-9">@(Model?.AssignedStaff ?? "Unassigned")</dd>
+
+                    <dt class="col-sm-3">Department:</dt>
+                    <dd class="col-sm-9">@(Model?.Department ?? "Not specified")</dd>
+
+                    <dt class="col-sm-3">Date Requested:</dt>
+                    <dd class="col-sm-9">
+                        @Model?.DateRequested.ToString("MMMM dd, yyyy")
+                        <small class="text-muted">(@Model?.DaysOpen days ago)</small>
+                    </dd>
+
+                    @if (Model?.DateAssigned.HasValue == true)
+                    {
+                        <dt class="col-sm-3">Date Assigned:</dt>
+                        <dd class="col-sm-9">@Model.DateAssigned.Value.ToString("MMMM dd, yyyy")</dd>
+                    }
+
+                    @if (Model?.DueDate.HasValue == true)
+                    {
+                        <dt class="col-sm-3">Due Date:</dt>
+                        <dd class="col-sm-9">
+                            <span class="@(Model.IsOverdue ? "text-danger fw-bold" : "")">
+                                @Model.DueDate.Value.ToString("MMMM dd, yyyy")
+                                @if (Model.IsOverdue)
+                                {
+                                    <i class="bi bi-exclamation-triangle text-danger ms-1"></i>
+                                    <span class="badge bg-danger ms-1">OVERDUE</span>
+                                }
+                            </span>
+                        </dd>
+                    }
+
+                    @if (Model?.DateCompleted.HasValue == true)
+                    {
+                        <dt class="col-sm-3">Date Completed:</dt>
+                        <dd class="col-sm-9">@Model.DateCompleted.Value.ToString("MMMM dd, yyyy")</dd>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model?.ResolutionNotes))
+                    {
+                        <dt class="col-sm-3">Resolution Notes:</dt>
+                        <dd class="col-sm-9">@Model.ResolutionNotes</dd>
+                    }
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">Quick Actions</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    @if (Model?.Status != RequestStatus.InProgress)
+                    {
+                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@Model?.Id" />
+                            <input type="hidden" name="status" value="@RequestStatus.InProgress" />
+                            <button type="submit" class="btn btn-info w-100">
+                                <i class="bi bi-play-circle me-1"></i>Start Progress
+                            </button>
+                        </form>
+                    }
+                    
+                    @if (Model?.Status != RequestStatus.Completed)
+                    {
+                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@Model?.Id" />
+                            <input type="hidden" name="status" value="@RequestStatus.Completed" />
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="bi bi-check-circle me-1"></i>Mark Complete
+                            </button>
+                        </form>
+                    }
+                    
+                    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-primary">
+                        <i class="bi bi-pencil me-1"></i>Edit Request
+                    </a>
+                    
+                    <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-outline-danger">
+                        <i class="bi bi-trash me-1"></i>Delete Request
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6 class="mb-0">Timeline</h6>
+            </div>
+            <div class="card-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <i class="bi bi-plus-circle text-primary"></i>
+                        <div class="timeline-content">
+                            <h6>Request Created</h6>
+                            <small class="text-muted">@Model?.DateCreated.ToString("MMM dd, yyyy")</small>
+                        </div>
+                    </div>
+                    
+                    @if (Model?.DateAssigned.HasValue == true)
+                    {
+                        <div class="timeline-item">
+                            <i class="bi bi-person-check text-info"></i>
+                            <div class="timeline-content">
+                                <h6>Assigned to Staff</h6>
+                                <small class="text-muted">@Model.DateAssigned.Value.ToString("MMM dd, yyyy")</small>
+                            </div>
+                        </div>
+                    }
+                    
+                    @if (Model?.DateCompleted.HasValue == true)
+                    {
+                        <div class="timeline-item">
+                            <i class="bi bi-check-circle text-success"></i>
+                            <div class="timeline-content">
+                                <h6>Request Completed</h6>
+                                <small class="text-muted">@Model.DateCompleted.Value.ToString("MMM dd, yyyy")</small>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.timeline-item i {
+    position: absolute;
+    left: -25px;
+    top: 0;
+    font-size: 1.2rem;
+}
+
+.timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 20px;
+    width: 2px;
+    height: 20px;
+    background-color: #dee2e6;
+}
+</style>

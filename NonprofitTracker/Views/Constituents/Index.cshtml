@@ -1,0 +1,229 @@
+@model NonprofitTracker.ViewModels.ConstituentSearchViewModel
+@{
+    ViewData["Title"] = "Constituents";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>
+        <i class="bi bi-people-fill me-2"></i>Constituents
+    </h1>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-person-plus me-1"></i>Add New Constituent
+    </a>
+</div>
+
+<!-- Search Form -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" asp-action="Index">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label asp-for="SearchTerm" class="form-label">Search</label>
+                    <input asp-for="SearchTerm" class="form-control" placeholder="Name or email...">
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="City" class="form-label">City</label>
+                    <input asp-for="City" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="State" class="form-label">State</label>
+                    <input asp-for="State" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="IsVolunteer" class="form-label">Volunteer</label>
+                    <select asp-for="IsVolunteer" class="form-select">
+                        <option value="">All</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="PreferredCommunication" class="form-label">Communication</label>
+                    <select asp-for="PreferredCommunication" asp-items="Html.GetEnumSelectList<NonprofitTracker.Models.CommunicationPreference>()" class="form-select">
+                        <option value="">All</option>
+                    </select>
+                </div>
+                <div class="col-md-1 d-flex align-items-end">
+                    <button type="submit" class="btn btn-outline-primary w-100">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+            <input type="hidden" asp-for="Page" value="1" />
+            <input type="hidden" asp-for="SortBy" />
+            <input type="hidden" asp-for="SortDirection" />
+        </form>
+    </div>
+</div>
+
+<!-- Results -->
+@if (Model.Results.Any())
+{
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><strong>@Model.TotalCount</strong> constituents found</span>
+            <div class="btn-group btn-group-sm" role="group">
+                <input type="radio" class="btn-check" name="pageSize" id="size10" value="10" @(Model.PageSize == 10 ? "checked" : "")>
+                <label class="btn btn-outline-secondary" for="size10">10</label>
+                <input type="radio" class="btn-check" name="pageSize" id="size25" value="25" @(Model.PageSize == 25 ? "checked" : "")>
+                <label class="btn btn-outline-secondary" for="size25">25</label>
+                <input type="radio" class="btn-check" name="pageSize" id="size50" value="50" @(Model.PageSize == 50 ? "checked" : "")>
+                <label class="btn btn-outline-secondary" for="size50">50</label>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>
+                            <a href="@Url.Action("Index", new { 
+                                searchTerm = Model.SearchTerm, 
+                                city = Model.City, 
+                                state = Model.State, 
+                                isVolunteer = Model.IsVolunteer,
+                                preferredCommunication = Model.PreferredCommunication,
+                                sortBy = "lastName", 
+                                sortDirection = Model.SortBy == "lastName" && Model.SortDirection == "asc" ? "desc" : "asc",
+                                page = 1,
+                                pageSize = Model.PageSize 
+                            })" class="text-decoration-none">
+                                Name 
+                                @if (Model.SortBy == "lastName")
+                                {
+                                    <i class="bi bi-arrow-@(Model.SortDirection == "asc" ? "up" : "down")"></i>
+                                }
+                            </a>
+                        </th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>City</th>
+                        <th>Volunteer</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var constituent in Model.Results)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@constituent.FullName</strong>
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(constituent.Email))
+                                {
+                                    <a href="mailto:@constituent.Email">@constituent.Email</a>
+                                }
+                            </td>
+                            <td>@constituent.PhoneNumber</td>
+                            <td>@constituent.City, @constituent.State</td>
+                            <td>
+                                @if (constituent.IsVolunteer)
+                                {
+                                    <span class="badge bg-success">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">No</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a asp-action="Details" asp-route-id="@constituent.Id" class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@constituent.Id" class="btn btn-outline-secondary btn-sm">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a asp-controller="Donations" asp-action="Create" asp-route-constituentId="@constituent.Id" class="btn btn-outline-success btn-sm">
+                                        <i class="bi bi-cash-coin"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        @if (Model.TotalPages > 1)
+        {
+            <div class="card-footer">
+                <nav aria-label="Constituents pagination">
+                    <ul class="pagination justify-content-center mb-0">
+                        <li class="page-item @(Model.Page <= 1 ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { 
+                                searchTerm = Model.SearchTerm, 
+                                city = Model.City, 
+                                state = Model.State, 
+                                isVolunteer = Model.IsVolunteer,
+                                preferredCommunication = Model.PreferredCommunication,
+                                sortBy = Model.SortBy, 
+                                sortDirection = Model.SortDirection,
+                                page = Model.Page - 1,
+                                pageSize = Model.PageSize 
+                            })">Previous</a>
+                        </li>
+                        
+                        @for (int i = Math.Max(1, Model.Page - 2); i <= Math.Min(Model.TotalPages, Model.Page + 2); i++)
+                        {
+                            <li class="page-item @(i == Model.Page ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { 
+                                    searchTerm = Model.SearchTerm, 
+                                    city = Model.City, 
+                                    state = Model.State, 
+                                    isVolunteer = Model.IsVolunteer,
+                                    preferredCommunication = Model.PreferredCommunication,
+                                    sortBy = Model.SortBy, 
+                                    sortDirection = Model.SortDirection,
+                                    page = i,
+                                    pageSize = Model.PageSize 
+                                })">@i</a>
+                            </li>
+                        }
+                        
+                        <li class="page-item @(Model.Page >= Model.TotalPages ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { 
+                                searchTerm = Model.SearchTerm, 
+                                city = Model.City, 
+                                state = Model.State, 
+                                isVolunteer = Model.IsVolunteer,
+                                preferredCommunication = Model.PreferredCommunication,
+                                sortBy = Model.SortBy, 
+                                sortDirection = Model.SortDirection,
+                                page = Model.Page + 1,
+                                pageSize = Model.PageSize 
+                            })">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <i class="bi bi-info-circle me-2"></i>
+        No constituents found matching your search criteria.
+    </div>
+}
+
+@section Scripts {
+    <script>
+        // Handle page size changes
+        $('input[name="pageSize"]').change(function() {
+            const form = $('form[method="get"]');
+            const pageSize = $(this).val();
+            
+            // Add page size to form and submit
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'pageSize',
+                value: pageSize
+            }).appendTo(form);
+            
+            form.submit();
+        });
+    </script>
+}

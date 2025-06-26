@@ -1,0 +1,158 @@
+@model NonprofitTracker.Models.Donation
+@using NonprofitTracker.Models
+
+@{
+    ViewData["Title"] = "Donation Details";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">
+        <i class="bi bi-info-circle text-primary me-2"></i>Donation Details
+    </h1>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-primary me-2">
+            <i class="bi bi-pencil me-1"></i>Edit
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-1"></i>Back to List
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Donation Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Donor:</dt>
+                            <dd class="col-sm-8">
+                                @if (Model?.Constituent != null)
+                                {
+                                    <a asp-controller="Constituents" asp-action="Details" asp-route-id="@Model.Constituent.Id" class="text-decoration-none">
+                                        @Model.Constituent.FirstName @Model.Constituent.LastName
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Unknown</span>
+                                }
+                            </dd>
+
+                            <dt class="col-sm-4">Campaign:</dt>
+                            <dd class="col-sm-8">
+                                @if (Model?.Campaign != null)
+                                {
+                                    <a asp-controller="Campaigns" asp-action="Details" asp-route-id="@Model.Campaign.Id" class="text-decoration-none">
+                                        @Model.Campaign.Name
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">General Fund</span>
+                                }
+                            </dd>
+
+                            <dt class="col-sm-4">Amount:</dt>
+                            <dd class="col-sm-8">
+                                <span class="h5 text-success">@Model?.Amount.ToString("C")</span>
+                            </dd>
+
+                            <dt class="col-sm-4">Date:</dt>
+                            <dd class="col-sm-8">@Model?.DonationDate.ToString("MMMM dd, yyyy")</dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Type:</dt>
+                            <dd class="col-sm-8">
+                                <span class="badge bg-secondary">@Model?.DonationType</span>
+                            </dd>
+
+                            <dt class="col-sm-4">Acknowledgment:</dt>
+                            <dd class="col-sm-8">
+                                @{
+                                    var badgeClass = Model?.AcknowledgmentStatus switch
+                                    {
+                                        AcknowledgmentStatus.Sent => "bg-success",
+                                        AcknowledgmentStatus.Pending => "bg-warning",
+                                        AcknowledgmentStatus.NotRequired => "bg-secondary",
+                                        _ => "bg-secondary"
+                                    };
+                                }
+                                <span class="badge @badgeClass">@Model?.AcknowledgmentStatus</span>
+                            </dd>
+
+                            <dt class="col-sm-4">Created:</dt>
+                            <dd class="col-sm-8">@Model?.CreatedDate.ToString("MMMM dd, yyyy")</dd>
+
+                            <dt class="col-sm-4">Updated:</dt>
+                            <dd class="col-sm-8">@Model?.UpdatedDate.ToString("MMMM dd, yyyy")</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model?.Notes))
+                {
+                    <div class="mt-4">
+                        <h6>Notes:</h6>
+                        <div class="p-3 bg-light rounded">
+                            @Model.Notes
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">Actions</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-primary">
+                        <i class="bi bi-pencil me-1"></i>Edit Donation
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-outline-danger">
+                        <i class="bi bi-trash me-1"></i>Delete Donation
+                    </a>
+                    <hr>
+                    @if (Model?.Constituent != null)
+                    {
+                        <a asp-controller="Constituents" asp-action="Details" asp-route-id="@Model.Constituent.Id" class="btn btn-outline-info">
+                            <i class="bi bi-person me-1"></i>View Donor
+                        </a>
+                    }
+                    @if (Model?.Campaign != null)
+                    {
+                        <a asp-controller="Campaigns" asp-action="Details" asp-route-id="@Model.Campaign.Id" class="btn btn-outline-info">
+                            <i class="bi bi-megaphone me-1"></i>View Campaign
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        @if (Model?.AcknowledgmentStatus == AcknowledgmentStatus.Pending)
+        {
+            <div class="card mt-3">
+                <div class="card-header bg-warning">
+                    <h6 class="mb-0 text-dark">
+                        <i class="bi bi-exclamation-triangle me-1"></i>Acknowledgment Required
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="small mb-2">This donation requires acknowledgment.</p>
+                    <button class="btn btn-warning btn-sm">
+                        <i class="bi bi-envelope me-1"></i>Send Thank You
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

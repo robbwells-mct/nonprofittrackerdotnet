@@ -1,0 +1,308 @@
+﻿@model NonprofitTracker.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4 mb-3">
+            <i class="bi bi-heart-fill text-primary me-2"></i>
+            Welcome to AIFun4.US
+        </h1>
+        <p class="lead">Comprehensive nonprofit management dashboard</p>
+    </div>
+</div>
+
+<!-- Key Metrics Cards -->
+<div class="row mb-4">
+    <div class="col-md-2">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-people-fill fs-1 me-3"></i>
+                    <div>
+                        <h4 class="card-title mb-0">@Model.TotalConstituents.ToString("N0")</h4>
+                        <p class="card-text small">Constituents</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-currency-dollar fs-1 me-3"></i>
+                    <div>
+                        <h4 class="card-title mb-0">@Model.TotalDonations.ToString("C0")</h4>
+                        <p class="card-text small">Total Donations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-megaphone-fill fs-1 me-3"></i>
+                    <div>
+                        <h4 class="card-title mb-0">@Model.TotalCampaigns</h4>
+                        <p class="card-text small">Active Campaigns</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-ticket-detailed-fill fs-1 me-3"></i>
+                    <div>
+                        <h4 class="card-title mb-0">@Model.PendingServiceRequests</h4>
+                        <p class="card-text small">Pending Requests</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card text-white bg-secondary">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-clipboard-check-fill fs-1 me-3"></i>
+                    <div>
+                        <h4 class="card-title mb-0">@Model.ActivePrograms</h4>
+                        <p class="card-text small">Active Programs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card border-primary">
+            <div class="card-body text-center">
+                <h5 class="card-title">Quick Actions</h5>
+                <div class="d-grid gap-2">
+                    <a asp-controller="Constituents" asp-action="Create" class="btn btn-primary btn-sm">
+                        <i class="bi bi-person-plus"></i> Add Constituent
+                    </a>
+                    <a asp-controller="Donations" asp-action="Create" class="btn btn-success btn-sm">
+                        <i class="bi bi-cash-coin"></i> Record Donation
+                    </a>
+                    <a asp-controller="ServiceRequests" asp-action="Create" class="btn btn-warning btn-sm">
+                        <i class="bi bi-ticket-detailed"></i> New Request
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Recent Donations -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="bi bi-clock-history me-2"></i>Recent Donations
+                </h5>
+                <a asp-controller="Donations" asp-action="Index" class="btn btn-outline-primary btn-sm">View All</a>
+            </div>
+            <div class="card-body">
+                @if (Model.RecentDonations.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Donor</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var donation in Model.RecentDonations.Take(8))
+                                {
+                                    <tr>
+                                        <td>@donation.ConstituentName</td>
+                                        <td>@donation.Amount.ToString("C")</td>
+                                        <td>@donation.Date.ToString("MMM dd")</td>
+                                        <td><span class="badge bg-secondary">@donation.GiftType</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No recent donations found.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Campaign Progress -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="bi bi-bar-chart-fill me-2"></i>Campaign Progress
+                </h5>
+                <a asp-controller="Campaigns" asp-action="Index" class="btn btn-outline-primary btn-sm">View All</a>
+            </div>
+            <div class="card-body">
+                @if (Model.CampaignProgress.Any())
+                {
+                    @foreach (var campaign in Model.CampaignProgress.Take(5))
+                    {
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <strong>@campaign.CampaignName</strong>
+                                <span>@campaign.RaisedAmount.ToString("C0") / @campaign.GoalAmount.ToString("C0")</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar @(campaign.ProgressPercentage >= 75 ? "bg-success" : campaign.ProgressPercentage >= 50 ? "bg-info" : campaign.ProgressPercentage >= 25 ? "bg-warning" : "bg-danger")" 
+                                     role="progressbar" 
+                                     style="width: @Math.Min(campaign.ProgressPercentage, 100)%"
+                                     aria-valuenow="@campaign.ProgressPercentage" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="100">
+                                    @campaign.ProgressPercentage.ToString("F1")%
+                                </div>
+                            </div>
+                            <small class="text-muted">
+                                @if (campaign.DaysRemaining > 0)
+                                {
+                                    <text>@campaign.DaysRemaining days remaining</text>
+                                }
+                                else if (campaign.DaysRemaining == 0)
+                                {
+                                    <text>Ends today</text>
+                                }
+                                else
+                                {
+                                    <text>Campaign ended</text>
+                                }
+                            </small>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">No active campaigns found.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Service Request Summary -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="bi bi-pie-chart-fill me-2"></i>Service Request Status
+                </h5>
+                <a asp-controller="ServiceRequests" asp-action="Index" class="btn btn-outline-primary btn-sm">View All</a>
+            </div>
+            <div class="card-body">
+                @if (Model.ServiceRequestSummary.Any())
+                {
+                    @foreach (var summary in Model.ServiceRequestSummary)
+                    {
+                        var badgeClass = summary.Status switch
+                        {
+                            NonprofitTracker.Models.RequestStatus.Pending => "bg-warning",
+                            NonprofitTracker.Models.RequestStatus.InProgress => "bg-info",
+                            NonprofitTracker.Models.RequestStatus.Completed => "bg-success",
+                            NonprofitTracker.Models.RequestStatus.Cancelled => "bg-secondary",
+                            _ => "bg-secondary"
+                        };
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge @badgeClass">@summary.Status</span>
+                            <strong>@summary.Count</strong>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">No service requests found.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Donation Trends -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-graph-up me-2"></i>Monthly Donation Trends
+                </h5>
+            </div>
+            <div class="card-body">
+                @if (Model.MonthlyTrends.Any())
+                {
+                    <canvas id="monthlyTrendsChart" width="400" height="200"></canvas>
+                }
+                else
+                {
+                    <p class="text-muted">No donation data available for trends.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @if (Model.MonthlyTrends.Any())
+    {
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const ctx = document.getElementById('monthlyTrendsChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.MonthlyTrends.Select(t => t.Month))),
+                    datasets: [{
+                        label: 'Monthly Donations',
+                        data: @Html.Raw(Json.Serialize(Model.MonthlyTrends.Select(t => t.Amount))),
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    }
+}ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

@@ -1,0 +1,154 @@
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">
+        <i class="bi bi-bar-chart text-primary me-2"></i>Reports & Analytics
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-heart text-danger me-2"></i>Donation Reports
+                </h5>
+                <p class="card-text">
+                    Generate detailed reports on donations, including filters by date range, campaign, and gift type.
+                    Export data for further analysis.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li><i class="bi bi-check me-1"></i>Filter by date range</li>
+                    <li><i class="bi bi-check me-1"></i>Campaign-specific analysis</li>
+                    <li><i class="bi bi-check me-1"></i>Gift type breakdown</li>
+                    <li><i class="bi bi-check me-1"></i>CSV export functionality</li>
+                </ul>
+                <a asp-action="Donations" class="btn btn-primary">
+                    <i class="bi bi-bar-chart me-1"></i>View Donation Reports
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-people text-info me-2"></i>Constituent Analytics
+                </h5>
+                <p class="card-text">
+                    Analyze constituent demographics, communication preferences, and engagement patterns.
+                    Understand your donor base better.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li><i class="bi bi-check me-1"></i>Demographic breakdowns</li>
+                    <li><i class="bi bi-check me-1"></i>Geographic distribution</li>
+                    <li><i class="bi bi-check me-1"></i>Communication preferences</li>
+                    <li><i class="bi bi-check me-1"></i>Engagement metrics</li>
+                </ul>
+                <a asp-action="ConstituentAnalytics" class="btn btn-info">
+                    <i class="bi bi-graph-up me-1"></i>View Analytics
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-bullseye text-success me-2"></i>Campaign Performance
+                </h5>
+                <p class="card-text">
+                    Track campaign progress, goal achievement, and fundraising effectiveness.
+                    Monitor active and completed campaigns.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li><i class="bi bi-check me-1"></i>Goal vs. actual progress</li>
+                    <li><i class="bi bi-check me-1"></i>Donation trends</li>
+                    <li><i class="bi bi-check me-1"></i>Time-based analysis</li>
+                    <li><i class="bi bi-check me-1"></i>ROI calculations</li>
+                </ul>
+                <a asp-action="CampaignPerformance" class="btn btn-success">
+                    <i class="bi bi-trophy me-1"></i>View Performance
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-headset text-warning me-2"></i>Service Request Reports
+                </h5>
+                <p class="card-text">
+                    Monitor service request trends, response times, and resolution rates.
+                    Improve service delivery and constituent satisfaction.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li><i class="bi bi-check me-1"></i>Request volume trends</li>
+                    <li><i class="bi bi-check me-1"></i>Response time analysis</li>
+                    <li><i class="bi bi-check me-1"></i>Category breakdowns</li>
+                    <li><i class="bi bi-check me-1"></i>Staff performance</li>
+                </ul>
+                <a asp-action="ServiceRequests" class="btn btn-warning">
+                    <i class="bi bi-clock-history me-1"></i>View Reports
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Stats Section -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h5 class="mb-0">Quick Statistics</h5>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <div class="border-end">
+                    <h3 class="text-primary mb-1">
+                        <i class="bi bi-people"></i>
+                    </h3>
+                    <h4 class="mb-0">-</h4>
+                    <small class="text-muted">Total Constituents</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="border-end">
+                    <h3 class="text-success mb-1">
+                        <i class="bi bi-currency-dollar"></i>
+                    </h3>
+                    <h4 class="mb-0">-</h4>
+                    <small class="text-muted">Total Donations</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="border-end">
+                    <h3 class="text-info mb-1">
+                        <i class="bi bi-bullseye"></i>
+                    </h3>
+                    <h4 class="mb-0">-</h4>
+                    <small class="text-muted">Active Campaigns</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h3 class="text-warning mb-1">
+                    <i class="bi bi-headset"></i>
+                </h3>
+                <h4 class="mb-0">-</h4>
+                <small class="text-muted">Pending Requests</small>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <small class="text-muted">
+                <i class="bi bi-info-circle me-1"></i>
+                Statistics are updated in real-time. Click on individual report types above for detailed analysis.
+            </small>
+        </div>
+    </div>
+</div>

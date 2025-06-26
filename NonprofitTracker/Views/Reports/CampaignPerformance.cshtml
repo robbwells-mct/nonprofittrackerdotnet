@@ -1,0 +1,155 @@
+@model dynamic
+
+@{
+    ViewData["Title"] = "Campaign Performance";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">
+        <i class="bi bi-bullseye text-primary me-2"></i>Campaign Performance
+    </h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>Back to Reports
+    </a>
+</div>
+
+@if (Model != null && Model.Count > 0)
+{
+    @foreach (var campaign in Model)
+    {
+        var progressPercentage = 0.0;
+        var isOverGoal = false;
+        
+        if (campaign.Campaign?.GoalAmount > 0)
+        {
+            progressPercentage = Math.Round((double)campaign.TotalRaised / (double)campaign.Campaign.GoalAmount * 100, 1);
+            isOverGoal = campaign.TotalRaised > campaign.Campaign.GoalAmount;
+        }
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">@campaign.Campaign.Name</h5>
+                    <div>
+                        @if (campaign.Campaign.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Completed</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <p class="text-muted mb-2">@campaign.Campaign.Description</p>
+                        <p class="small text-muted mb-0">
+                            <strong>Period:</strong> @campaign.Campaign.StartDate.ToString("MMM dd, yyyy") - @campaign.Campaign.EndDate.ToString("MMM dd, yyyy")
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-end">
+                            <h3 class="text-success mb-1">@campaign.TotalRaised.ToString("C")</h3>
+                            <p class="text-muted mb-0">of @campaign.Campaign.GoalAmount.ToString("C") goal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="small">Progress</span>
+                        <span class="small fw-bold @(isOverGoal ? "text-success" : "")">@progressPercentage%</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar @(isOverGoal ? "bg-success" : "bg-primary")" 
+                             role="progressbar" 
+                             style="width: @Math.Min(progressPercentage, 100)%"></div>
+                        @if (isOverGoal)
+                        {
+                            <div class="progress-bar bg-warning" 
+                                 role="progressbar" 
+                                 style="width: @Math.Min(progressPercentage - 100, 100)%"></div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Campaign Statistics -->
+                <div class="row text-center mb-3">
+                    <div class="col-md-3">
+                        <div class="border-end">
+                            <h4 class="text-primary mb-1">@campaign.DonorCount</h4>
+                            <small class="text-muted">Unique Donors</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border-end">
+                            <h4 class="text-info mb-1">@campaign.AverageDonation.ToString("C")</h4>
+                            <small class="text-muted">Average Donation</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border-end">
+                            <h4 class="text-success mb-1">@campaign.LargestDonation.ToString("C")</h4>
+                            <small class="text-muted">Largest Donation</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="text-warning mb-1">@(campaign.Campaign.GoalAmount - campaign.TotalRaised > 0 ? (campaign.Campaign.GoalAmount - campaign.TotalRaised).ToString("C") : "$0")</h4>
+                        <small class="text-muted">Remaining to Goal</small>
+                    </div>
+                </div>
+
+                <!-- Monthly Performance -->
+                @if (campaign.DonationsByMonth.Count > 0)
+                {
+                    <h6>Monthly Performance</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Amount Raised</th>
+                                    <th>Donations</th>
+                                    <th>Progress</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var month in campaign.DonationsByMonth)
+                                {
+                                    var monthlyProgress = campaign.Campaign.GoalAmount > 0 ? Math.Round((double)month.Amount / (double)campaign.Campaign.GoalAmount * 100, 1) : 0;
+                                    <tr>
+                                        <td>@month.Month</td>
+                                        <td class="text-success fw-bold">@month.Amount.ToString("C")</td>
+                                        <td><span class="badge bg-secondary">@month.Count</span></td>
+                                        <td>
+                                            <div class="progress" style="height: 6px; width: 80px;">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: @Math.Min(monthlyProgress * 10, 100)%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-body text-center py-5">
+            <i class="bi bi-bullseye display-4 text-muted"></i>
+            <h4 class="mt-3">No Campaigns Found</h4>
+            <p class="text-muted">There are no campaigns to analyze at this time.</p>
+            <a asp-controller="Campaigns" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i>Create First Campaign
+            </a>
+        </div>
+    </div>
+}

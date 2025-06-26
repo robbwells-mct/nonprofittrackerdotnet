@@ -1,0 +1,147 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = NonprofitTracker
+build_property.RootNamespace = NonprofitTracker
+build_property.ProjectDir = /workspaces/nonprofittrackerdotnet/NonprofitTracker/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /workspaces/nonprofittrackerdotnet/NonprofitTracker
+build_property._RazorSourceGeneratorDebug = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Campaigns/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtcGFpZ25zL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Campaigns/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtcGFpZ25zL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Campaigns/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtcGFpZ25zL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Campaigns/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtcGFpZ25zL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Campaigns/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtcGFpZ25zL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Constituents/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uc3RpdHVlbnRzL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Constituents/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uc3RpdHVlbnRzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Donations/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9uYXRpb25zL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Donations/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9uYXRpb25zL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Donations/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9uYXRpb25zL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Donations/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9uYXRpb25zL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Donations/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9uYXRpb25zL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Reports/CampaignPerformance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9DYW1wYWlnblBlcmZvcm1hbmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Reports/ConstituentAnalytics.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9Db25zdGl0dWVudEFuYWx5dGljcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Reports/Donations.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9Eb25hdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Reports/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Reports/ServiceRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9TZXJ2aWNlUmVxdWVzdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/ServiceRequests/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZVJlcXVlc3RzL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/ServiceRequests/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZVJlcXVlc3RzL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/ServiceRequests/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZVJlcXVlc3RzL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/ServiceRequests/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZVJlcXVlc3RzL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/ServiceRequests/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZVJlcXVlc3RzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-a4sd9uiwqw

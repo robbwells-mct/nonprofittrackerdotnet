@@ -1,0 +1,184 @@
+@model NonprofitTracker.Models.ServiceRequest
+@using NonprofitTracker.Models
+
+@{
+    ViewData["Title"] = "Edit Service Request";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">
+        <i class="bi bi-pencil text-primary me-2"></i>Edit Service Request
+    </h1>
+    <div>
+        <a asp-action="Details" asp-route-id="@Model?.Id" class="btn btn-outline-info me-2">
+            <i class="bi bi-eye me-1"></i>View Details
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-1"></i>Back to List
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Edit Service Request Information</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="DateCreated" />
+                    <input type="hidden" asp-for="DateRequested" />
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="ConstituentId" class="form-label">Constituent</label>
+                                <select asp-for="ConstituentId" class="form-select" asp-items="ViewBag.ConstituentId">
+                                    <option value="">Select a constituent...</option>
+                                </select>
+                                <span asp-validation-for="ConstituentId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="RequestType" class="form-label">Request Type</label>
+                                <select asp-for="RequestType" class="form-select" asp-items="Html.GetEnumSelectList<RequestType>()">
+                                    <option value="">Select request type...</option>
+                                </select>
+                                <span asp-validation-for="RequestType" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label">Title</label>
+                        <input asp-for="Title" class="form-control" placeholder="Brief title for the request" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Detailed description of the request..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Priority" class="form-label">Priority</label>
+                                <select asp-for="Priority" class="form-select" asp-items="Html.GetEnumSelectList<Priority>()">
+                                    <option value="">Select priority...</option>
+                                </select>
+                                <span asp-validation-for="Priority" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Status" class="form-label">Status</label>
+                                <select asp-for="Status" class="form-select" asp-items="Html.GetEnumSelectList<RequestStatus>()">
+                                    <option value="">Select status...</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="DueDate" class="form-label">Due Date</label>
+                                <input asp-for="DueDate" class="form-control" type="date" />
+                                <span asp-validation-for="DueDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="DateAssigned" class="form-label">Date Assigned</label>
+                                <input asp-for="DateAssigned" class="form-control" type="date" />
+                                <span asp-validation-for="DateAssigned" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="AssignedStaff" class="form-label">Assigned Staff</label>
+                                <input asp-for="AssignedStaff" class="form-control" placeholder="Staff member assigned to this request" />
+                                <span asp-validation-for="AssignedStaff" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Department" class="form-label">Department</label>
+                                <input asp-for="Department" class="form-control" placeholder="Department handling this request" />
+                                <span asp-validation-for="Department" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (Model?.Status == RequestStatus.Completed)
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="DateCompleted" class="form-label">Date Completed</label>
+                                    <input asp-for="DateCompleted" class="form-control" type="date" />
+                                    <span asp-validation-for="DateCompleted" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ResolutionNotes" class="form-label">Resolution Notes</label>
+                            <textarea asp-for="ResolutionNotes" class="form-control" rows="3" placeholder="Notes about how this request was resolved..."></textarea>
+                            <span asp-validation-for="ResolutionNotes" class="text-danger"></span>
+                        </div>
+                    }
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a asp-action="Details" asp-route-id="@Model?.Id" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle me-1"></i>Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">Current Status</h6>
+            </div>
+            <div class="card-body">
+                <dl class="row small">
+                    <dt class="col-6">Created:</dt>
+                    <dd class="col-6">@Model?.DateCreated.ToString("MM/dd/yyyy")</dd>
+                    
+                    <dt class="col-6">Last Updated:</dt>
+                    <dd class="col-6">@Model?.LastUpdated.ToString("MM/dd/yyyy")</dd>
+                    
+                    <dt class="col-6">Days Open:</dt>
+                    <dd class="col-6">@Model?.DaysOpen days</dd>
+
+                    @if (Model?.IsOverdue == true)
+                    {
+                        <dt class="col-6">Status:</dt>
+                        <dd class="col-6">
+                            <span class="badge bg-danger">OVERDUE</span>
+                        </dd>
+                    }
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,210 @@
+@model NonprofitTracker.ViewModels.DonationReportViewModel
+@using NonprofitTracker.Models
+
+@{
+    ViewData["Title"] = "Donation Reports";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">
+        <i class="bi bi-bar-chart text-primary me-2"></i>Donation Reports
+    </h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>Back to Reports
+    </a>
+</div>
+
+<!-- Filter Section -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="mb-0">Report Filters</h5>
+    </div>
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-3">
+                <label for="StartDate" class="form-label">Start Date</label>
+                <input asp-for="StartDate" class="form-control" type="date" />
+            </div>
+            <div class="col-md-3">
+                <label for="EndDate" class="form-label">End Date</label>
+                <input asp-for="EndDate" class="form-control" type="date" />
+            </div>
+            <div class="col-md-3">
+                <label for="CampaignId" class="form-label">Campaign</label>
+                <select asp-for="CampaignId" class="form-select">
+                    <option value="">All Campaigns</option>
+                    @foreach (var campaign in Model.AvailableCampaigns)
+                    {
+                        <option value="@campaign.Id" selected="@(Model.CampaignId == campaign.Id)">
+                            @campaign.Name
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="GiftType" class="form-label">Gift Type</label>
+                <select asp-for="GiftType" class="form-select">
+                    <option value="">All Gift Types</option>
+                    @foreach (GiftType giftType in Enum.GetValues<GiftType>())
+                    {
+                        <option value="@giftType" selected="@(Model.GiftType == giftType)">
+                            @giftType
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="bi bi-search me-1"></i>Generate Report
+                </button>
+                <a asp-action="Donations" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-clockwise me-1"></i>Reset Filters
+                </a>
+                @if (Model.Donations.Any())
+                {
+                    <button type="button" class="btn btn-success ms-2" onclick="exportToCSV()">
+                        <i class="bi bi-download me-1"></i>Export CSV
+                    </button>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.Donations.Any())
+{
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Total Donations</h6>
+                            <h4>@Model.TotalCount</h4>
+                        </div>
+                        <i class="bi bi-heart fs-1 opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Total Amount</h6>
+                            <h4>@Model.TotalAmount.ToString("C")</h4>
+                        </div>
+                        <i class="bi bi-currency-dollar fs-1 opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Average Donation</h6>
+                            <h4>@(Model.TotalCount > 0 ? (Model.TotalAmount / Model.TotalCount).ToString("C") : "$0.00")</h4>
+                        </div>
+                        <i class="bi bi-calculator fs-1 opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donations Table -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Donation Details (@Model.TotalCount donations)</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped" id="donationsTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Donor</th>
+                            <th>Amount</th>
+                            <th>Gift Type</th>
+                            <th>Campaign</th>
+                            <th>Acknowledgment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var donation in Model.Donations)
+                        {
+                            <tr>
+                                <td>@donation.Date.ToString("MM/dd/yyyy")</td>
+                                <td>@donation.ConstituentName</td>
+                                <td>
+                                    <span class="fw-bold text-success">@donation.Amount.ToString("C")</span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">@donation.GiftType</span>
+                                </td>
+                                <td>@(donation.CampaignName ?? "No Campaign")</td>
+                                <td>
+                                    @if (donation.AcknowledgmentSent)
+                                    {
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle me-1"></i>Sent
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning">
+                                            <i class="bi bi-clock me-1"></i>Pending
+                                        </span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-body text-center py-5">
+            <i class="bi bi-inbox display-4 text-muted"></i>
+            <h4 class="mt-3">No Donations Found</h4>
+            <p class="text-muted">No donations match your current filter criteria.</p>
+            <a asp-action="Donations" class="btn btn-primary">
+                <i class="bi bi-arrow-clockwise me-1"></i>Reset Filters
+            </a>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function exportToCSV() {
+            const table = document.getElementById('donationsTable');
+            const rows = Array.from(table.rows);
+            
+            const csvContent = rows.map(row => {
+                const cells = Array.from(row.cells);
+                return cells.map(cell => {
+                    const text = cell.textContent.trim();
+                    // Escape quotes and wrap in quotes if contains comma
+                    return text.includes(',') ? `"${text.replace(/"/g, '""')}"` : text;
+                }).join(',');
+            }).join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `donation-report-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+}

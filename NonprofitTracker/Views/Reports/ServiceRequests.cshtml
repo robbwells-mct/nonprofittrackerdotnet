@@ -1,0 +1,339 @@
+@model dynamic
+
+@{
+    ViewData["Title"] = "Service Request Reports";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">
+        <i class="bi bi-headset text-primary me-2"></i>Service Request Reports
+    </h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>Back to Reports
+    </a>
+</div>
+
+<!-- Summary Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Total Requests</h6>
+                        <h4>@Model.TotalRequests</h4>
+                    </div>
+                    <i class="bi bi-headset fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Pending</h6>
+                        <h4>@Model.PendingRequests</h4>
+                    </div>
+                    <i class="bi bi-clock fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">In Progress</h6>
+                        <h4>@Model.InProgressRequests</h4>
+                    </div>
+                    <i class="bi bi-gear fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Completed</h6>
+                        <h4>@Model.CompletedRequests</h4>
+                    </div>
+                    <i class="bi bi-check-circle fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.OverdueRequests > 0)
+{
+    <div class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        <strong>@Model.OverdueRequests overdue requests</strong> require immediate attention.
+        <a asp-controller="ServiceRequests" asp-action="Index" asp-route-overdue="true" class="alert-link">View overdue requests</a>
+    </div>
+}
+
+<div class="row">
+    <!-- Request Breakdown -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Request Types</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.RequestsByType.Count > 0)
+                {
+                    @foreach (var type in Model.RequestsByType)
+                    {
+                        var percentage = Model.TotalRequests > 0 ? Math.Round((double)type.Count / Model.TotalRequests * 100, 1) : 0;
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>@type.Type</span>
+                            <span>
+                                <span class="badge bg-primary me-2">@type.Count</span>
+                                <small class="text-muted">(@percentage%)</small>
+                            </span>
+                        </div>
+                        <div class="progress mb-3" style="height: 8px;">
+                            <div class="progress-bar" role="progressbar" style="width: @percentage%"></div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">No request data available.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Priority Distribution -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Priority Distribution</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.RequestsByPriority.Count > 0)
+                {
+                    @foreach (var priority in Model.RequestsByPriority)
+                    {
+                        var percentage = Model.TotalRequests > 0 ? Math.Round((double)priority.Count / Model.TotalRequests * 100, 1) : 0;
+                        var badgeClass = priority.Priority switch
+                        {
+                            "Urgent" => "bg-danger",
+                            "High" => "bg-warning",
+                            "Medium" => "bg-info",
+                            "Low" => "bg-secondary",
+                            _ => "bg-primary"
+                        };
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>@priority.Priority</span>
+                            <span>
+                                <span class="badge @badgeClass me-2">@priority.Count</span>
+                                <small class="text-muted">(@percentage%)</small>
+                            </span>
+                        </div>
+                        <div class="progress mb-3" style="height: 8px;">
+                            <div class="progress-bar @badgeClass" role="progressbar" style="width: @percentage%"></div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">No priority data available.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Status Overview -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Status Overview</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.RequestsByStatus.Count > 0)
+                {
+                    @foreach (var status in Model.RequestsByStatus)
+                    {
+                        var percentage = Model.TotalRequests > 0 ? Math.Round((double)status.Count / Model.TotalRequests * 100, 1) : 0;
+                        var badgeClass = status.Status switch
+                        {
+                            "Pending" => "bg-warning",
+                            "InProgress" => "bg-info",
+                            "Completed" => "bg-success",
+                            "Cancelled" => "bg-secondary",
+                            _ => "bg-primary"
+                        };
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>@status.Status</span>
+                            <span>
+                                <span class="badge @badgeClass me-2">@status.Count</span>
+                                <small class="text-muted">(@percentage%)</small>
+                            </span>
+                        </div>
+                        <div class="progress mb-3" style="height: 8px;">
+                            <div class="progress-bar @badgeClass" role="progressbar" style="width: @percentage%"></div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">No status data available.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Department Performance -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Department Performance</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.RequestsByDepartment.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Department</th>
+                                    <th>Requests</th>
+                                    <th>Workload</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var dept in Model.RequestsByDepartment)
+                                {
+                                    var percentage = Model.TotalRequests > 0 ? Math.Round((double)dept.Count / Model.TotalRequests * 100, 1) : 0;
+                                    <tr>
+                                        <td>@dept.Department</td>
+                                        <td><span class="badge bg-primary">@dept.Count</span></td>
+                                        <td>@percentage%</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No department data available.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Monthly Trends -->
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Monthly Trends (Last 12 Months)</h5>
+    </div>
+    <div class="card-body">
+        @if (Model.MonthlyRequestTrends.Count > 0)
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Total Requests</th>
+                            <th>Completed</th>
+                            <th>Completion Rate</th>
+                            <th>Avg Resolution Days</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var month in Model.MonthlyRequestTrends)
+                        {
+                            var completionRate = month.RequestCount > 0 ? Math.Round((double)month.CompletedCount / month.RequestCount * 100, 1) : 0;
+                            <tr>
+                                <td>@month.Month</td>
+                                <td><span class="badge bg-primary">@month.RequestCount</span></td>
+                                <td><span class="badge bg-success">@month.CompletedCount</span></td>
+                                <td>
+                                    <span class="@(completionRate >= 80 ? "text-success" : completionRate >= 60 ? "text-warning" : "text-danger") fw-bold">
+                                        @completionRate%
+                                    </span>
+                                </td>
+                                <td>@Math.Round(month.AverageResolutionDays, 1) days</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-3">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="border-end">
+                            @{
+                                var totalRequestsSum = 0;
+                                foreach (var trend in Model.MonthlyRequestTrends)
+                                {
+                                    totalRequestsSum += trend.RequestCount;
+                                }
+                            }
+                            <h4 class="text-primary">@totalRequestsSum</h4>
+                            <small class="text-muted">Total Requests (12 months)</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border-end">
+                            @{
+                                var totalCompletedSum = 0;
+                                foreach (var trend in Model.MonthlyRequestTrends)
+                                {
+                                    totalCompletedSum += trend.CompletedCount;
+                                }
+                            }
+                            <h4 class="text-success">@totalCompletedSum</h4>
+                            <small class="text-muted">Completed Requests</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border-end">
+                            @{
+                                var totalRequests = totalRequestsSum;
+                                var totalCompleted = totalCompletedSum;
+                                var overallCompletionRate = totalRequests > 0 ? Math.Round((double)totalCompleted / totalRequests * 100, 1) : 0;
+                            }
+                            <h4 class="@(overallCompletionRate >= 80 ? "text-success" : overallCompletionRate >= 60 ? "text-warning" : "text-danger")">@overallCompletionRate%</h4>
+                            <small class="text-muted">Overall Completion Rate</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @{
+                            var avgResolution = 0.0;
+                            if (Model.MonthlyRequestTrends.Count > 0)
+                            {
+                                var totalDays = 0.0;
+                                foreach (var trend in Model.MonthlyRequestTrends)
+                                {
+                                    totalDays += trend.AverageResolutionDays;
+                                }
+                                avgResolution = Math.Round(totalDays / Model.MonthlyRequestTrends.Count, 1);
+                            }
+                        }
+                        <h4 class="text-info">@avgResolution</h4>
+                        <small class="text-muted">Avg Resolution Days</small>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">No trend data available for the last 12 months.</p>
+        }
+    </div>
+</div>

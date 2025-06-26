@@ -1,0 +1,21 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Home/Index.cshtml(180,75): error CS1002: ; expected [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Program.cs(12,18): error CS1061: 'IServiceCollection' does not contain a definition for 'AddDatabaseDeveloperPageExceptionFilter' and no accessible extension method 'AddDatabaseDeveloperPageExceptionFilter' accepting a first argument of type 'IServiceCollection' could be found (are you missing a using directive or an assembly reference?) [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Program.cs(24,9): error CS1061: 'WebApplication' does not contain a definition for 'UseMigrationsEndPoint' and no accessible extension method 'UseMigrationsEndPoint' accepting a first argument of type 'WebApplication' could be found (are you missing a using directive or an assembly reference?) [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Home/Index.cshtml(180,61): error CS0246: The type or namespace name 'days' could not be found (are you missing a using directive or an assembly reference?) [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Home/Index.cshtml(180,66): warning CS0168: The variable 'remaining' is declared but never used [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Controllers/ReportsController.cs(205,87): warning CS8629: Nullable value type may be null. [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+
+Build FAILED.
+
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Home/Index.cshtml(180,66): warning CS0168: The variable 'remaining' is declared but never used [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Controllers/ReportsController.cs(205,87): warning CS8629: Nullable value type may be null. [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Home/Index.cshtml(180,75): error CS1002: ; expected [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Program.cs(12,18): error CS1061: 'IServiceCollection' does not contain a definition for 'AddDatabaseDeveloperPageExceptionFilter' and no accessible extension method 'AddDatabaseDeveloperPageExceptionFilter' accepting a first argument of type 'IServiceCollection' could be found (are you missing a using directive or an assembly reference?) [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Program.cs(24,9): error CS1061: 'WebApplication' does not contain a definition for 'UseMigrationsEndPoint' and no accessible extension method 'UseMigrationsEndPoint' accepting a first argument of type 'WebApplication' could be found (are you missing a using directive or an assembly reference?) [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+/workspaces/nonprofittrackerdotnet/NonprofitTracker/Views/Home/Index.cshtml(180,61): error CS0246: The type or namespace name 'days' could not be found (are you missing a using directive or an assembly reference?) [/workspaces/nonprofittrackerdotnet/NonprofitTracker/NonprofitTracker.csproj]
+    2 Warning(s)
+    4 Error(s)
+
+Time Elapsed 00:00:02.66

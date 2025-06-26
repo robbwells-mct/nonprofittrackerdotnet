@@ -1,0 +1,314 @@
+@model dynamic
+
+@{
+    ViewData["Title"] = "Constituent Analytics";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">
+        <i class="bi bi-people text-primary me-2"></i>Constituent Analytics
+    </h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>Back to Reports
+    </a>
+</div>
+
+<!-- Summary Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Total Constituents</h6>
+                        <h4>@Model.TotalConstituents</h4>
+                    </div>
+                    <i class="bi bi-people fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Active Donors</h6>
+                        <h4>@Model.DonorCount</h4>
+                    </div>
+                    <i class="bi bi-heart fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Volunteers</h6>
+                        <h4>@Model.VolunteerCount</h4>
+                    </div>
+                    <i class="bi bi-person-heart fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Donor Rate</h6>
+                        <h4>@(Model.TotalConstituents > 0 ? Math.Round((double)Model.DonorCount / Model.TotalConstituents * 100, 1) : 0)%</h4>
+                    </div>
+                    <i class="bi bi-percent fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Demographics Section -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Demographics</h5>
+            </div>
+            <div class="card-body">
+                <!-- Gender Breakdown -->
+                @if (Model.GenderBreakdown.Count > 0)
+                {
+                    <h6>Gender Distribution</h6>
+                    <div class="mb-3">
+                        @foreach (var gender in Model.GenderBreakdown)
+                        {
+                            var percentage = Math.Round((double)gender.Count / Model.TotalConstituents * 100, 1);
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>@gender.Gender</span>
+                                <span>
+                                    <span class="badge bg-secondary me-2">@gender.Count</span>
+                                    <small class="text-muted">(@percentage%)</small>
+                                </span>
+                            </div>
+                            <div class="progress mb-2" style="height: 8px;">
+                                <div class="progress-bar" role="progressbar" style="width: @percentage%"></div>
+                            </div>
+                        }
+                    </div>
+                }
+
+                <!-- Communication Preferences -->
+                @if (Model.CommunicationPreferences.Count > 0)
+                {
+                    <h6>Communication Preferences</h6>
+                    <div class="mb-3">
+                        @foreach (var pref in Model.CommunicationPreferences)
+                        {
+                            var percentage = Math.Round((double)pref.Count / Model.TotalConstituents * 100, 1);
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>@pref.Preference</span>
+                                <span>
+                                    <span class="badge bg-info me-2">@pref.Count</span>
+                                    <small class="text-muted">(@percentage%)</small>
+                                </span>
+                            </div>
+                            <div class="progress mb-2" style="height: 8px;">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: @percentage%"></div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Geographic Distribution -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Geographic Distribution</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.StateBreakdown.Count > 0)
+                {
+                    <h6>Top States/Provinces</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>State</th>
+                                    <th>Count</th>
+                                    <th>Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var state in Model.StateBreakdown)
+                                {
+                                    var percentage = Math.Round((double)state.Count / Model.TotalConstituents * 100, 1);
+                                    <tr>
+                                        <td>@state.State</td>
+                                        <td><span class="badge bg-primary">@state.Count</span></td>
+                                        <td>@percentage%</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No geographic data available.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Top Donors -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Top Donors</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.TopDonors.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Donor</th>
+                                    <th>Total Donated</th>
+                                    <th>Donations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var donor in Model.TopDonors)
+                                {
+                                    <tr>
+                                        <td>@donor.Name</td>
+                                        <td class="text-success fw-bold">@donor.TotalDonated.ToString("C")</td>
+                                        <td><span class="badge bg-secondary">@donor.DonationCount</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No donation data available.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Growth -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Monthly Growth (Last 12 Months)</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.MonthlyGrowth.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>New Constituents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var month in Model.MonthlyGrowth)
+                                {
+                                    <tr>
+                                        <td>@month.Month</td>
+                                        <td><span class="badge bg-success">@month.NewConstituents</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-muted">
+                            <i class="bi bi-info-circle me-1"></i>
+                            @{
+                                var totalNewConstituents = 0;
+                                foreach (var growth in Model.MonthlyGrowth)
+                                {
+                                    totalNewConstituents += growth.NewConstituents;
+                                }
+                            }
+                            Total new constituents in last 12 months: <strong>@totalNewConstituents</strong>
+                        </small>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No recent growth data available.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Insights -->
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Key Insights</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center p-3 border rounded">
+                    @{
+                        var avgDonationPerDonor = 0m;
+                        if (Model.DonorCount > 0)
+                        {
+                            var totalDonated = 0m;
+                            foreach (var donor in Model.TopDonors)
+                            {
+                                totalDonated += donor.TotalDonated;
+                            }
+                            avgDonationPerDonor = Math.Round(totalDonated / Model.DonorCount, 2);
+                        }
+                    }
+                    <h3 class="text-primary">@avgDonationPerDonor.ToString("C")</h3>
+                    <small class="text-muted">Average Donation per Donor</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center p-3 border rounded">
+                    @{
+                        var volunteerRate = Model.TotalConstituents > 0 ? Math.Round((double)Model.VolunteerCount / Model.TotalConstituents * 100, 1) : 0;
+                    }
+                    <h3 class="text-success">@volunteerRate%</h3>
+                    <small class="text-muted">Volunteer Participation Rate</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center p-3 border rounded">
+                    @{
+                        var avgNewConstituentsPerMonth = 0.0;
+                        if (Model.MonthlyGrowth.Count > 0)
+                        {
+                            var totalNew = 0;
+                            foreach (var growth in Model.MonthlyGrowth)
+                            {
+                                totalNew += growth.NewConstituents;
+                            }
+                            avgNewConstituentsPerMonth = Math.Round((double)totalNew / Model.MonthlyGrowth.Count, 1);
+                        }
+                    }
+                    <h3 class="text-info">@avgNewConstituentsPerMonth</h3>
+                    <small class="text-muted">Avg New Constituents/Month</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
