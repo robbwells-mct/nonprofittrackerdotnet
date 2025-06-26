@@ -93,12 +93,21 @@ namespace NonprofitTracker.Controllers
         // POST: Donations/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ConstituentId,CampaignId,Amount,GiftType,DonationDate,IsRecurring,RecurringFrequency,NextRecurringDate,CheckNumber,CreditCardLast4,Notes")] Donation donation)
+        public async Task<IActionResult> Create([Bind("ConstituentId,CampaignId,Amount,GiftType,DonationType,DonationDate,IsRecurring,RecurringFrequency,NextRecurringDate,AcknowledgmentStatus,CheckNumber,CreditCardLast4,Notes")] Donation donation)
         {
             if (ModelState.IsValid)
             {
                 donation.DateCreated = DateTime.UtcNow;
+                donation.CreatedDate = DateTime.UtcNow;
                 donation.LastUpdated = DateTime.UtcNow;
+                donation.UpdatedDate = DateTime.UtcNow;
+                
+                // Set acknowledgment sent based on status
+                donation.AcknowledgmentSent = donation.AcknowledgmentStatus == AcknowledgmentStatus.Sent;
+                if (donation.AcknowledgmentSent)
+                {
+                    donation.AcknowledgmentDate = DateTime.UtcNow;
+                }
                 
                 // Set next recurring date if this is a recurring donation
                 if (donation.IsRecurring && donation.RecurringFrequency.HasValue)
@@ -146,7 +155,7 @@ namespace NonprofitTracker.Controllers
         // POST: Donations/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ConstituentId,CampaignId,Amount,GiftType,DonationDate,IsRecurring,RecurringFrequency,NextRecurringDate,AcknowledgmentSent,AcknowledgmentDate,CheckNumber,CreditCardLast4,Notes,DateCreated")] Donation donation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ConstituentId,CampaignId,Amount,GiftType,DonationType,DonationDate,IsRecurring,RecurringFrequency,NextRecurringDate,AcknowledgmentStatus,AcknowledgmentSent,AcknowledgmentDate,CheckNumber,CreditCardLast4,Notes,DateCreated,CreatedDate,UpdatedDate")] Donation donation)
         {
             if (id != donation.Id)
             {

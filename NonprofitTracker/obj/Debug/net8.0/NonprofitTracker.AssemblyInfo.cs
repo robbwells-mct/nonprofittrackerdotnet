@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NonprofitTracker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e9eca9061bdb01659297e5ad60a9ce30f057e95")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c55db8fb931bca033b180d0a73c86b2c2ce1619e")]
 [assembly: System.Reflection.AssemblyProductAttribute("NonprofitTracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NonprofitTracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
