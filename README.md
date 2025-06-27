@@ -198,7 +198,7 @@ The application uses SQLite by default for easy development and deployment. The 
 
 ## Contributing
 
-This is a demonstration project for AI4Fun.org showcasing modern .NET development practices for nonprofit management applications.
+This is a demonstration project for AI4Fun showcasing modern .NET development practices for nonprofit management applications.
 
 ## License
 
