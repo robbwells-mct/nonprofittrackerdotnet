@@ -202,4 +202,4 @@ This is a demonstration project for AI4Fun.org showcasing modern .NET developmen
 
 ## License
 
-This project is created as part of AI4Fun.org educational content.
+This project is created as part of AI4Fun.us educational content.
