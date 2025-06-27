@@ -1,4 +1,4 @@
-# AI4Fun.org - Nonprofit Tracker
+# AI4Fun - Nonprofit Tracker
 
 A comprehensive .NET 8 web application designed for nonprofit organizations to track donations, manage constituents, and organize their fundraising activities.
 
